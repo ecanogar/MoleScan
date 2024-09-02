@@ -39,9 +39,6 @@ if uploaded_file is not None:
         
         classes = ['Nevo melanocítico', 'Melanoma', 'Lesiones benignas (queratosis)', 'Carcinoma basoceluclar', 'Queratoris actínicas', 'Lesiones vaculares', 'Dermatofibroma']
 
-        #predicted_class = np.argmax(results)
-        #max_probability = np.max(results)
-
         # Mostrar el resultado
         # Cargar la imagen original
         image = cv2.imread("tmp/uploaded_image_derm.jpg")
@@ -59,43 +56,10 @@ if uploaded_file is not None:
 
         with col2:
             st.header("Diagnóstico")
-            #st.text(f"Lesión {classes[predicted_class]} ({max_probability*100:.2f}%)")
 
             # Imprimo las predicciones con las probabilidade más altas
             top_indices = np.argsort(results)[-3:][::-1]
             for i, idx in enumerate(top_indices):
-                #print(f'Predicción {i + 1}: Clase: {classes[idx]}, Probabilidad: {predictions[idx]:.2f}')
                 st.text(f"{classes[idx]} ({results[idx]*100:.2f}%)")
 
         "🆘 Por su seguridad, este diagnóstico siempre tiene que ser revisado por un dermatólogo 👩‍⚕️"
-
-
-
-
-
-
-#def load_model():
-#    model_name = 'rfc_gs_model'
-#    return mlflow.pyfunc.load_model(f"models:/{model_name}@prod")
-    
-    
-#age = st.slider("Age", value=20, min_value=0, max_value=100)
-#gender = st.radio("Gender", ["Male", "Female"])
-#bloodpressure = st.number_input("Resting Blood Pressure", value=0)
-#cholesterol = st.number_input("Cholesterol", value=0)
-#bloodsugar = st.radio("Fasting Blood Sugar", ["Yes", "No"])
-#maxheartrate = st.number_input("Maximun Heart Rate", value=0)
-
-#gender_dict = {"Male": 0, "Female": 1}
-#bloodsugar_dict = {"No": 0, "Yes": 1}
-
-#input = pd.DataFrame(
-#    data=[[age, gender_dict[gender], bloodpressure, cholesterol, bloodsugar_dict[bloodsugar], maxheartrate]],
-#    columns=["Age", "Sex", "RestingBP", "Cholesterol", "FastingBS", "MaxHR"]
-#)
-
-#model = load_model()
-#prediction = model.predict(input)
-
-#prediction_labels = ["💚 Probablemente NO tendrá problemas de corazón", "🆘 Es probable que tenga problemas de corazón"]
-#f"{prediction_labels[int(prediction[0])]}"

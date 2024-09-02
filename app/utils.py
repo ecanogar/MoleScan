@@ -84,9 +84,6 @@ def plot_mole_axes(image_path, longest_line, midpoint, intersection, longest_lin
       else:
           plt.plot([midpoint[0], point.x], [midpoint[1], point.y], color='red', linewidth=2)
 
-    #plt.scatter(*midpoint, color='yellow', label='Punto Medio')
-    #plt.scatter(*zip(*[(point.x, point.y) for point in intersection]), color='purple', label='Intersección')
-
     plt.legend()
     plt.axis('off')
     st.pyplot(fig)

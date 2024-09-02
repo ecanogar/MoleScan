@@ -12,7 +12,6 @@ def load_model():
 
 # Título de la página
 st.title("📏 Calcula el tamaño de un lunar")
-#st.subheader("Sube una imagen de tu lunar y la referencia circular y calcula al instante su área y la longitud de sus ejes.")
 
 # Widget para subir la imagen
 uploaded_file = st.file_uploader("Sube la imagen de un lunar y el círculo de referencia", type=["jpg", "jpeg", "png"])
@@ -34,7 +33,6 @@ if uploaded_file is not None and reference_diameter_cm is not None:
         reference_radius_cm = reference_diameter_cm / 2
         reference_area_cm2 = np.pi * (reference_radius_cm ** 2)
 
-        # Asumimos que la segmentación retorna las máscaras de los objetos detectados
         reference_polygon = None
         lunar_polygon = None
 
@@ -42,7 +40,7 @@ if uploaded_file is not None and reference_diameter_cm is not None:
             class_id = results[0].boxes.cls[i]
             if class_id == 1:  # Clase 1 es "Referencia"
                 reference_polygon = mask
-                reference_bbox = results[0].boxes.xywh[i]  # Asumiendo que xywh son las coordenadas del bounding box
+                reference_bbox = results[0].boxes.xywh[i]
             elif class_id == 0:  # Clase 0 es "Lunar"
                 lunar_polygon = mask
 
@@ -71,35 +69,3 @@ if uploaded_file is not None and reference_diameter_cm is not None:
 
         else:
             st.text("No se detectaron tanto el círculo de referencia como el lunar.")
-
-
-
-
-
-
-
-#def load_model():
-#    model_name = 'rfc_gs_model'
-#    return mlflow.pyfunc.load_model(f"models:/{model_name}@prod")
-    
-    
-#age = st.slider("Age", value=20, min_value=0, max_value=100)
-#gender = st.radio("Gender", ["Male", "Female"])
-#bloodpressure = st.number_input("Resting Blood Pressure", value=0)
-#cholesterol = st.number_input("Cholesterol", value=0)
-#bloodsugar = st.radio("Fasting Blood Sugar", ["Yes", "No"])
-#maxheartrate = st.number_input("Maximun Heart Rate", value=0)
-
-#gender_dict = {"Male": 0, "Female": 1}
-#bloodsugar_dict = {"No": 0, "Yes": 1}
-
-#input = pd.DataFrame(
-#    data=[[age, gender_dict[gender], bloodpressure, cholesterol, bloodsugar_dict[bloodsugar], maxheartrate]],
-#    columns=["Age", "Sex", "RestingBP", "Cholesterol", "FastingBS", "MaxHR"]
-#)
-
-#model = load_model()
-#prediction = model.predict(input)
-
-#prediction_labels = ["💚 Probablemente NO tendrá problemas de corazón", "🆘 Es probable que tenga problemas de corazón"]
-#f"{prediction_labels[int(prediction[0])]}"
