@@ -10,7 +10,12 @@ This repository includes object detection, segmentation and classification model
    
 ## Streamlit Application
 
-In addition to the models, this repository includes a Streamlit app that integrates the three models, providing a user-friendly interface for mole detection, size estimation, and dermoscopic image classification.
+In addition to the models, this repository includes a Streamlit app that integrates the three models, providing a user-friendly interface for mole detection, size estimation, and dermoscopic image classification. The following video is a demo of the application:
+
+
+[Download the demo video](app/demo-app-molescan.mp4) (7.85 MB)
+
+![App Demo](app/gif-app-molescan.gif)
 
 ## Repository Structure
 
