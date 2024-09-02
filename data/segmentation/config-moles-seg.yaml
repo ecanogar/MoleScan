@@ -1,0 +1,9 @@
+
+path: '/content/drive/MyDrive/mole-mapper'  # dataset root dir
+train: data/processed/dataset-mole-ref/train/images # train images (relative to 'path')
+val: data/processed/dataset-mole-ref/train/images  # val images (relative to 'path')
+
+# Classes
+names:
+  0: mole
+  1: ref
